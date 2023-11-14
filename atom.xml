@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>秋过冬漫长</title>
+  <title>褪墨</title>
   
   <subtitle>没有比脚更长的路，走过去，前面是个天！</subtitle>
   <link href="https://blog.tychen.cn/atom.xml" rel="self"/>
   
   <link href="https://blog.tychen.cn/"/>
-  <updated>2023-11-14T02:23:56.130Z</updated>
+  <updated>2023-11-14T02:56:54.607Z</updated>
   <id>https://blog.tychen.cn/</id>
   
   <author>
@@ -21,12 +21,16 @@
     <link href="https://blog.tychen.cn/2023/11/14/My-First-Post/"/>
     <id>https://blog.tychen.cn/2023/11/14/My-First-Post/</id>
     <published>2023-11-14T00:09:50.000Z</published>
-    <updated>2023-11-14T02:23:56.130Z</updated>
+    <updated>2023-11-14T02:56:54.607Z</updated>
     
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="8e85776e79ef6e8d94f2e9c9f92b4d363b00055326b4f47ce67a23246e6281b8">1ad8fbfc1b16761b2848febb6288d627044a4f15e5bc94fb636ce0ec6ddb6c4e16fb9a50c228873e563de17212992d0c1322bdf79b95c9726e61edfc88ff7c4c</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码后阅读</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <content type="html"><![CDATA[<p>这里什么都没有</p>]]></content>
     
     
-    <summary type="html">&lt;br /&gt;点击 Read More &gt;&gt; 输入密码后继续阅读</summary>
+      
+      
+    <summary type="html">&lt;p&gt;这里什么都没有&lt;/p&gt;
+</summary>
+      
     
     
     
