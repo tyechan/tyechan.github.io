@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
   <meta charset="utf-8">
   
   
@@ -25,13 +25,25 @@
   
   
   
+    
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
   
 <meta name="generator" content="Hexo 7.0.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
+  <body>
+    <script
+      type="text/javascript"
+      color="220,220,220"
+      opacity="0.7"
+      zIndex="-2"
+      count="200"
+      src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"
+    ></script>
+    <div id="container">
+      <div id="wrap">
+        <header id="header">
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
@@ -77,8 +89,8 @@
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="outer">
+          <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -118,6 +130,8 @@
       </div>
       
         
+  <div id="comments"></div>
+
 
 
 
@@ -131,8 +145,7 @@
   </div>
 </article>
 </section>
-        
-          <aside id="sidebar">
+           <aside id="sidebar">
   
     
   <div class="widget-wrap">
@@ -197,10 +210,10 @@
 
   
 </aside>
-        
-      </div>
-      <a id="totop" href="#top"></a>
-      <footer id="footer">
+          
+        </div>
+        <a id="totop" href="#top"></a>
+        <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
@@ -227,9 +240,9 @@
   </div>
 </footer>
 
+      </div>
     </div>
-  </div>
-  
+    
 <script src="/js/jquery-3.4.1.min.js"></script>
 
 
@@ -254,7 +267,26 @@
 
 
   
+    
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
+    
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+    <script>
+      var gitalk = new Gitalk({
+        clientID: '38dff3d6ea27aa7d01e1',
+        clientSecret: '237700e59e0751e58b9a1fc8e11b467f4e376722',
+        repo: 'git@github.com:tyechan/GitalkComments.git',
+        owner: 'tyechan',
+        admin: ['tyechan'],
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        language: 'zh-CN',
+        pagerDirection: 'last'
+      });
+      gitalk.render('comments');
+    </script>
   
 
   
@@ -268,11 +300,13 @@
   
 
   
+
+  
   
 
 
 
 
 
-</body>
+  </body>
 </html>
