@@ -2,18 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.tychen.cn/2023/11/13/hello-world/</loc>
+    <loc>https://blog.tychen.cn/learn-markdown/</loc>
     
-    <lastmod>2023-11-15</lastmod>
+    <lastmod>2023-11-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.tychen.cn/2023/11/14/My-First-Post/</loc>
+    <loc>https://blog.tychen.cn/2023/11/20/Hexo-Github-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</loc>
     
-    <lastmod>2023-11-14</lastmod>
+    <lastmod>2023-11-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.tychen.cn/2023/11/13/hello-world/</loc>
+    
+    <lastmod>2023-11-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +58,7 @@
 
   <url>
     <loc>https://blog.tychen.cn/</loc>
-    <lastmod>2023-11-17</lastmod>
+    <lastmod>2023-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,7 +66,7 @@
   
   <url>
     <loc>https://blog.tychen.cn/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-11-17</lastmod>
+    <lastmod>2023-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -66,7 +75,7 @@
   
   <url>
     <loc>https://blog.tychen.cn/categories/Hexo/</loc>
-    <lastmod>2023-11-17</lastmod>
+    <lastmod>2023-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

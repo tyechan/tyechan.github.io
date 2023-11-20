@@ -1,5 +1,6 @@
+https://blog.tychen.cn/learn-markdown/
+https://blog.tychen.cn/2023/11/20/Hexo-Github-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/
 https://blog.tychen.cn/2023/11/13/hello-world/
-https://blog.tychen.cn/2023/11/14/My-First-Post/
 https://blog.tychen.cn/about/index.html
 https://blog.tychen.cn/archives/index.html
 https://blog.tychen.cn/categories/index.html
