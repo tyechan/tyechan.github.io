@@ -5,3 +5,8 @@ https://blog.tychen.cn/about/index.html
 https://blog.tychen.cn/archives/index.html
 https://blog.tychen.cn/categories/index.html
 https://blog.tychen.cn/
+https://blog.tychen.cn/tags/%E5%AD%A6%E4%B9%A0/
+https://blog.tychen.cn/tags/Markdown/
+https://blog.tychen.cn/tags/Hexo/
+https://blog.tychen.cn/categories/Markdown/
+https://blog.tychen.cn/categories/Hexo/
