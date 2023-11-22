@@ -1,6 +1,6 @@
 ---
 title: Hexo+Github 搭建博客网站
-date: 2023-11-20 10:26:22
+date: 2023-11-22 11:26:22
 tags:
 - Hexo
 categories:
@@ -10,8 +10,8 @@ categories:
 记录一下此博客搭建的过程。
 此博客
 参考：
-- [使用 Hexo+GitHub 搭建个人免费博客教程（小白向）]
-- (https://zhuanlan.zhihu.com/p/60578464)
+- [使用 Hexo+GitHub 搭建个人免费博客教程（小白向）](https://zhuanlan.zhihu.com/p/60578464)
+- 
 
 <!--more-->
 
@@ -22,5 +22,5 @@ categories:
 3. 创建Github Page仓库
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTc1NTI4MTA5XX0=
+eyJoaXN0b3J5IjpbODg5NDM2NjAwXX0=
 -->
