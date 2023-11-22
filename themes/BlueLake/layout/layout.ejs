@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <%- partial('_partial/head') %>
+  <body>
+    <div id="container">
+      <div id="wrap">
+        <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+        <div class="outer">
+          <section id="main"><%- body %></section>
+          <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %> <%-
+          partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+          <% } %>
+        </div>
+        <a id="totop" href="#top"></a>
+        <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+      </div>
+    </div>
+    <%- partial('_partial/after-footer') %>
+  </body>
+</html>
+<!-- 单击显示文字 -->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<!-- 单击显示烟火 -->
+<!-- <canvas
+  class="fireworks"
+  style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none"
+></canvas>
+<script
+  type="text/javascript"
+  src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"
+></script>
+<script type="text/javascript" src="/js/fireworks.js"></script> -->
+
+<!-- 单击显示爱心 -->
+<!-- <script type="text/javascript" src="js/love.js"></script> -->
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="/js/snow.js"></script>
+
+<!-- 数码雨滴特效 -->
+<!-- <script type="text/javascript" src="js/digitalrain.js"></script> -->
