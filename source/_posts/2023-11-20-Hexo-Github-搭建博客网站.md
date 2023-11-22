@@ -8,7 +8,10 @@ categories:
 ---
 
 记录一下此博客搭建的过程。
-参考：[使用 Hexo+GitHub 搭建个人免费博客教程（小白向）](https://zhuanlan.zhihu.com/p/60578464)
+此博客
+参考：
+- [使用 Hexo+GitHub 搭建个人免费博客教程（小白向）]
+- (https://zhuanlan.zhihu.com/p/60578464)
 
 <!--more-->
 
@@ -18,3 +21,6 @@ categories:
 2. 连接Github
 3. 创建Github Page仓库
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbOTc1NTI4MTA5XX0=
+-->
