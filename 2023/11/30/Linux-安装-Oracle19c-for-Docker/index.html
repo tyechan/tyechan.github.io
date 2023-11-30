@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux 安装 Oracle19c for Docker | 晨天雨小寒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="晨天雨小寒" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+  <body>
+    <div id="container">
+      <div id="wrap">
+        <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">晨天雨小寒</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">好好学习，天天向上</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+        <div class="outer">
+          <section id="main"><article id="post-Linux-安装-Oracle19c-for-Docker" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux 安装 Oracle19c for Docker
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-11-30T02:11:21.000Z" itemprop="datePublished">2023年11月30日</time>
+</span>
+      
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/11/30/Linux-%E5%AE%89%E8%A3%85-Oracle19c-for-Docker/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Linux 安装 Oracle 数据库比较繁琐耗时，为了更快的进入学习状态，采用 Docker 快速安装部署。<br>
+为什么选择 <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html">Oracle19c</a> ？一、19c 和 12c 差不太多；二、有现成的Docker Image可以使用。<br>
+如需安装其他版本 Oracle 数据库，可以使用 Oracle 官方 <a target="_blank" rel="noopener" href="https://github.com/oracle/docker-images/tree/main/OracleDatabase/SingleInstance#how-to-build-and-run">Dockerfile</a> 自己编译安装。</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/suixinfeixiangfei/article/details/127364822">Linux下安装docker以及docker安装Oracle19c的全部详细过程及各种问题解决</a></p>
+<span id="more"></span>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-linux">安装 Linux</a>
+<ul>
+<li><a href="#centos">CentOS</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85-docker">安装 Docker</a>
+<ul>
+<li><a href="#centos-%E9%80%9A%E8%BF%87-yum-%E5%AE%89%E8%A3%85">CentOS 通过 yum 安装</a></li>
+<li><a href="#ubuntu-2204-server-%E8%87%AA%E5%B8%A6-docker">Ubuntu 2204 Server 自带 Docker</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8-docker-apt-%E4%BB%93%E5%BA%93">方法一、使用 Docker apt 仓库</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8-deb-%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85">方法二、使用 deb 文件安装</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%89%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85">方法三、使用脚本自动安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85-oracle19c">安装 Oracle19c</a>
+<ul>
+<li><a href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F">拉取镜像</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8">安装容器</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8">进入容器</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93">创建数据库</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-a5m2-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93">使用 A5M2 连接数据库</a></li>
+</ul>
+</li>
+</ul>
+<h1>安装 Linux</h1>
+<h2 id="CentOS">CentOS</h2>
+<p><a target="_blank" rel="noopener" href="https://www.centos.org/cl-vs-cs/">CentOS 7 将于2024年6月30日结束维护</a>，届时将无法获得官方补丁安装支持和系统升级，推荐个人用户选择 Ubuntu。</p>
+<h2 id="Ubuntu">Ubuntu</h2>
+<p>本次使用 <a target="_blank" rel="noopener" href="https://www.releases.ubuntu.com/jammy/">Ubuntu 2204 Server</a>版本，被称为<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/540742163">目前最安全的 Ubuntu 版本</a>。</p>
+<h1>安装 Docker</h1>
+<h2 id="CentOS-通过-yum-安装">CentOS 通过 yum 安装</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y docker</span><br></pre></td></tr></table></figure>
+<p>安装后查看 Docker 是否安装成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list installed |grep docker</span><br></pre></td></tr></table></figure>
+<h2 id="Ubuntu-2204-Server-自带-Docker">Ubuntu 2204 Server 自带 Docker</h2>
+<p>Ubuntu 2204 Server 安装引导中，可选安装 Docker 。<br>
+若是未安装，可以通过以下方法安装 Docker 。<br>
+参考自<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/#installation-methods">官方资料</a>。</p>
+<h3 id="方法一、使用-Docker-apt-仓库">方法一、使用 Docker apt 仓库</h3>
+<p>先配置仓库，之后通过该仓库安装或升级 Docker。</p>
+<ol>
+<li>配置 Docker apt 仓库</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装官方 GPG Key</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ca-certificates curl gnupg</span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</span><br><span class="line">sudo chmod a+r /etc/apt/keyrings/docker.gpg</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加 apt 仓库到 apt 源</span></span><br><span class="line">echo \</span><br><span class="line">  &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span><br><span class="line"><span class="meta prompt_">  $</span><span class="language-bash">(. /etc/os-release &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$VERSION_CODENAME</span>&quot;</span>) stable<span class="string">&quot; | \</span></span></span><br><span class="line"><span class="string"><span class="language-bash">  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span></span></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>
+<p>安装 Docker 软件包</p>
+<ul>
+<li>安装最新版本</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>安装指定版本</p>
+<ol>
+<li>首先列出存储库中的可用版本</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">List the available versions:</span></span><br><span class="line">apt-cache madison docker-ce | awk &#x27;&#123; print $3 &#125;&#x27;</span><br><span class="line"></span><br><span class="line">5:24.0.0-1~ubuntu.22.04~jammy</span><br><span class="line">5:23.0.6-1~ubuntu.22.04~jammy</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>然后选择所需的版本并安装</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VERSION_STRING=5:24.0.0-1~ubuntu.22.04~jammy</span><br><span class="line">sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>检查是否安装成功<br>
+通过运行 hello-world 映像来验证 Docker Engine 安装是否成功。</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+<h3 id="方法二、使用-deb-文件安装">方法二、使用 deb 文件安装</h3>
+<p>如果方法一无法安装，可以通过官方发布的 deb 文件进行安装或升级。</p>
+<ol>
+<li>前往：<a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/dists/">https://download.docker.com/linux/ubuntu/dists/</a>。</li>
+<li>选择所需版本进行下载。</li>
+<li>进入 <code>pool/stable/</code> 选择软件架构，一般家用电脑使用amd64。</li>
+<li>下载以下 deb 文件。
+<ul>
+<li><code>containerd.io_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-ce_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-ce-cli_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-buildx-plugin_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-compose-plugin_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+</ul>
+</li>
+<li>安装.deb 包。将下面示例中的路径修改为下载 deb 文件的位置。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i ./containerd.io_&lt;version&gt;_&lt;arch&gt;.deb \</span><br><span class="line">  ./docker-ce_&lt;version&gt;_&lt;arch&gt;.deb \</span><br><span class="line">  ./docker-ce-cli_&lt;version&gt;_&lt;arch&gt;.deb \</span><br><span class="line">  ./docker-buildx-plugin_&lt;version&gt;_&lt;arch&gt;.deb \</span><br><span class="line">  ./docker-compose-plugin_&lt;version&gt;_&lt;arch&gt;.deb</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>使用 hello-world 镜像，检查是否安装成功。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start</span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+<h3 id="方法三、使用脚本自动安装">方法三、使用脚本自动安装</h3>
+<p><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
+<h1>安装 Oracle19c</h1>
+<h2 id="拉取镜像">拉取镜像</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-hangzhou.aliyuncs.com/zhuyijun/oracle:19c</span><br></pre></td></tr></table></figure>
+<p>该步骤可以省略， <code>docker run</code> 可以自动拉取镜像</p>
+<h2 id="安装容器">安装容器</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -it --name orcl19c_03 -p 1521:1521 -p 5500:5500 -e ORACLE_SID=orcl -e ORACLE_PDB=orclPDB1 -e ORACLE_PWD=123456 -e ORACLE_EDITION=standard -e ORACLE_CHARACTERSET=AL32UTF8 -v /home/mydata/oracle/oracleData:/opt/myData/oracle/oracleData registry.cn-hangzhou.aliyuncs.com/zhuyijun/oracle:19c</span><br></pre></td></tr></table></figure>
+<p>上面的命令中</p>
+<ul>
+<li><code>ORACLE_SID=orcl</code> 是CDB数据库的服务名</li>
+<li><code>ORACLE_PDB=orclPDB1</code> 是PDB数据库的服务名</li>
+<li><code>ORACLE_PWD=123456</code> 是管理员密码</li>
+</ul>
+<h2 id="进入容器">进入容器</h2>
+<ol>
+<li>查看容器 ID</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p><code>-a</code> 显示全部，包括未启动的容器。</p>
+<ol start="2">
+<li>进入容器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it [1.容器id] bash</span><br></pre></td></tr></table></figure>
+<h2 id="创建数据库">创建数据库</h2>
+<ol>
+<li>连接 Oracle</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus system/123456@127.0.0.1/orclPDB1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建用户</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> test1 identified <span class="keyword">by</span> <span class="number">123456</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>赋予权限</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>, resource <span class="keyword">to</span> test1;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置表领域配额上限</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> test1 quota unlimited <span class="keyword">on</span> users;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置密码不过期</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> profile <span class="keyword">default</span> limit password_life_time unlimited;</span><br></pre></td></tr></table></figure>
+<h2 id="使用-A5M2-连接数据库">使用 A5M2 连接数据库</h2>
+<ol>
+<li>连接方式选择直接连接</li>
+<li>填写主机名，端口</li>
+<li>服务名：orclPDB1</li>
+<li>用户ID：test1</li>
+<li>密码：123456</li>
+<li>勾上保存密码</li>
+<li>点击测试连接</li>
+<li>测试连接通过，点 OK 保存</li>
+</ol>
+<blockquote>
+<p>施工中…</p>
+</blockquote>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">安装 Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS"><span class="toc-number">1.1.</span> <span class="toc-text">CentOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu"><span class="toc-number">1.2.</span> <span class="toc-text">Ubuntu</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">安装 Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS-%E9%80%9A%E8%BF%87-yum-%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">CentOS 通过 yum 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu-2204-Server-%E8%87%AA%E5%B8%A6-Docker"><span class="toc-number">2.2.</span> <span class="toc-text">Ubuntu 2204 Server 自带 Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8-Docker-apt-%E4%BB%93%E5%BA%93"><span class="toc-number">2.2.1.</span> <span class="toc-text">方法一、使用 Docker apt 仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8-deb-%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.2.</span> <span class="toc-text">方法二、使用 deb 文件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.3.</span> <span class="toc-text">方法三、使用脚本自动安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">安装 Oracle19c</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">3.1.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">安装容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">进入容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.4.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-A5M2-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.5.</span> <span class="toc-text">使用 A5M2 连接数据库</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+    <div class="article-reward">
+        <a id="reward-btn" href="javascript:;">打赏</a>
+        <div id="reward-content">
+            <h6 class="reward-tit">“感谢您的支持，我会继续努力哒！”</h6>
+            <div>
+                <div class="reward-code">
+                    <img class="type-code" src="/css/images/wechat.jpg">
+                    <img class="er-code" src="/css/images/wechat-pay.jpg">
+                </div>
+                <div class="reward-code">
+                    <img class="type-code" src="/css/images/alipay.jpg">
+                    <img class="er-code" src="/css/images/alipay-pay.jpg">
+                </div>
+            </div>
+            <p class="reward-desc">扫码打赏，感谢支持</p>
+        </div>
+    </div>
+
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/" rel="tag">oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag">环境配置</a></li></ul>
+
+          
+
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/11/22/Hexo-Github-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">
+        
+          Hexo+Github 搭建博客网站
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+      
+      
+        
+  <div id="comments"></div>
+
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+           <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/30/Linux-%E5%AE%89%E8%A3%85-Oracle19c-for-Docker/">Linux 安装 Oracle19c for Docker</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/22/Hexo-Github-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/">Hexo+Github 搭建博客网站</a>
+          </li>
+        
+          <li>
+            <a href="/learn-markdown/">Markdown 语法学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/20/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/oracle/" style="font-size: 10px;">oracle</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/" rel="tag">oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag">环境配置</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+</aside>
+          
+        </div>
+        <a id="totop" href="#top"></a>
+        <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2023 John Doe.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+
+
+
+  
+    
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+    
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+    <script>
+      var gitalk = new Gitalk({
+        clientID: '38dff3d6ea27aa7d01e1',
+        clientSecret: '237700e59e0751e58b9a1fc8e11b467f4e376722',
+        repo: 'GitalkComments',
+        owner: 'tyechan',
+        admin: ['tyechan'],
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        language: 'zh-CN',
+        pagerDirection: 'last'
+      });
+      gitalk.render('comments');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+  </body>
+</html>
+<!-- 单击显示文字 -->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<!-- 单击显示烟火 -->
+<!-- <canvas
+  class="fireworks"
+  style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none"
+></canvas>
+<script
+  type="text/javascript"
+  src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"
+></script>
+<script type="text/javascript" src="/js/fireworks.js"></script> -->
+
+<!-- 单击显示爱心 -->
+<!-- <script type="text/javascript" src="js/love.js"></script> -->
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="/js/snow.js"></script>
+
+<!-- 数码雨滴特效 -->
+<!-- <script type="text/javascript" src="js/digitalrain.js"></script> -->
