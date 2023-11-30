@@ -17,17 +17,3 @@ categories:
 
 <!--more-->
 
-## 搭建本地环境
-
-### 环境配置
-
-
-## 搭建服务器
-1. 安装Node.js 和 Git
-    安装完成后
-2. 连接Github
-3. 创建Github Page仓库
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY5Njc3MjQzLDExMTc0NzU4NzFdfQ==
--->
